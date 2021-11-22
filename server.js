@@ -21,7 +21,7 @@ app.use(express.static("public"));
 
 //--------------  MONGO DB ---------------
 
-const databaseUrl = 'fitnesstracker'
+const databaseUrl = 'workouts'
 const collections = ['workouts'];
 
 const db = mongojs(databaseUrl, collections);
@@ -29,6 +29,8 @@ const db = mongojs(databaseUrl, collections);
 db.on("error", error => {
     console.log("Database Error:", error);
 });
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workouts", { useNewUrlParser: true });
 
 //-------------- ROUTE ---------------
 
